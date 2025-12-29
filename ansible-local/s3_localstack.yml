@@ -1,0 +1,12 @@
+---
+- name: Testando S3 no LocalStack
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  tasks:
+    - name: Criar bucket S3 no LocalStack
+      amazon.aws.s3_bucket:
+        name: edragonball
+        state: present
+        endpoint_url: "{{ lookup('env', 'LOCALSTACK_ENDPOINT') }}"
